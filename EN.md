@@ -118,7 +118,7 @@ This will return:
 | Parameter | Description |
 |--|--|
 | databaseId |   See above.
-| caseId | The case's unique identifier, as returned by the previous type of call. Generally this is the case's neutral reference on CanLII.
+| caseId | The case's unique identifier, as returned by the previous type of call. Generally corresponds to the CanLII citation.
 
 ### Example call
 To fetch metadata for the Dunsmuir case (*Dunsmuir* v. *New Brunswick*, [2008] 1 SCR 190, 2008 SCC 9), you would use:
