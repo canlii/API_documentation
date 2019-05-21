@@ -8,7 +8,7 @@ Pour demander une clef d'API, prière de transmettre un message avec vos coordon
 
 | Paramètre | Description |
 |--|--|
-| langue |  {en} or {fr}. Ceci impact la langue dans laquelle l'API présentera les résultats. Par exemple, lorsqu'on cherche à obtenir une liste de texte législatifs en utilisant l'API legislationBrowse, si on utilise "fr" comme paramètre, le nom français des lois sera présenté. À l'inverse, en utilisant "en", on obtient les titres anglais. Ce ne sont pas tous les textes de notre collection qui sont disponibles dans les deux langues, donc en l'absence d'une version dans la langue du paramètre choisi, l'API retournera les résultats dans la seule langue disponible.
+| langue |  {en} or {fr}. Ce paramètre détermine la langue dans laquelle l'API présentera les résultats. Par exemple, lorsqu'on cherche à obtenir une liste de texte législatifs en utilisant l'API legislationBrowse, si on utilise "fr" comme paramètre, le nom français des lois sera présenté. À l'inverse, en utilisant "en", on obtient les titres anglais. Ce ne sont pas tous les textes de notre collection qui sont disponibles dans les deux langues, donc en l'absence d'une version dans la langue du paramètre choisi, l'API retournera les résultats dans la seule langue disponible.
 | clef |  Votre clef d'API.
 
 ## Obtenir une liste des cours et tribunaux dans la collection de CanLII et leur "databaseId" respectif.
