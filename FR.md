@@ -140,7 +140,7 @@ L'API retournera ceci:
   "concatenatedId": "2008csc-scc9"
 }
 
-## Obtenir la liste des décisions qui citent, et que citent, une décision (citateur)
+## Obtenir la liste des décisions qui citent une décision donnée ou qui sont citées dans une décision donnée (citateur)
 ### Structure de l'URL
 
       https://api.canlii.org/v1/caseCitator/{langue}/{databaseId}/{caseId}/metadataType?api_key={clef}
@@ -154,46 +154,46 @@ L'API retournera ceci:
 | metadataType | citedCases **ou** citingCases **ou** citedLegislations|
 
 ### Exemple d'appel
-    https://api.canlii.org/v1/caseCitator/en/onca/1999canlii1527/citedCases?api_key={key}
+    https://api.canlii.org/v1/caseCitator/en/qccs/2008qccs2292/citedCases?api_key={clef}
 
 L'API retournera ceci:
 
-{
-  "citedCases": [
     {
-      "databaseId": "onca",
-      "caseId": {
-        "en": "1998canlii2237"
-      },
-      "title": "Alper Development Inc. v. Harrowston Corp.",
-      "citation": "1998 CanLII 2237 (ON CA)"
-    },
-    {
-      "databaseId": "onca",
-      "caseId": {
-        "en": "1983canlii1820"
-      },
-      "title": "Berger v. Willowdale A.M.C. et al.",
-      "citation": "1983 CanLII 1820 (ON CA)"
-    },
-    ... // autres décisions
+      "citedCases": [
+        {
+          "databaseId": "qccq",
+          "caseId": {
+            "fr": "2002canlii32322"
+          },
+          "title": "9044-3422 Québec Inc. c. Cam-spec international Inc.",
+          "citation": "2002 CanLII 32322 (QC CQ)"
+        },
+        {
+          "databaseId": "qcca",
+          "caseId": {
+            "en": "2005qcca304"
+          },
+          "title": "Association provinciale des retraités d\u0027Hydro-Québec v. Hydro-Québec",
+          "citation": "2005 QCCA 304 (CanLII)"
+        }
+        ... // autres décisions
+
+## Obtenir une liste des bases de données de législation et de réglementation
+
+### Structure de l'URL
+
+    https://api.canlii.org/v1/legislationBrowse/{langue}/?api_key={clef}
 
 
-## Fetching list of legislation and regulation databases
-
-### Call structure
-
-    https://api.canlii.org/v1/legislationBrowse/{language}/?api_key={key}
-
-
-### Parameters
+### Paramètres
 See "Common parameters" above.
+voir "Paramètres fréquemment utilisés" ci-dessus.
 
-### Example call
+### Exemple d'appel
 
-    https://api.canlii.org/v1/legislationBrowse/en/?api_key={key}
+    https://api.canlii.org/v1/legislationBrowse/en/?api_key={clef}
 
-This will return the following list:
+L'API retournera la liste suivante:
 
     {
       "legislationDatabases": [
@@ -201,59 +201,57 @@ This will return the following list:
           "databaseId": "caa",
           "type": "ANNUAL_STATUTE",
           "jurisdiction": "ca",
-          "name": "Annual Statutes of Canada"
+          "name": "Lois annuelles du Canada"
         },
         {
           "databaseId": "ska",
           "type": "ANNUAL_STATUTE",
           "jurisdiction": "sk",
-          "name": "Annual Statutes of Saskatchewan"
+          "name": "Lois annuelles de la Saskatchewan"
         },
         {
           "databaseId": "nur",
           "type": "REGULATION",
           "jurisdiction": "nu",
-          "name": "Regulations of Nunavut"
-            ... // other databases
+          "name": "Règlements du Nunavut"
+        }
+        ... // autres bases de données
 
-## Getting list of legislation or regulation from a specific database
+## Obtenir la liste des lois ou règlements inclus dans une base de donnée précise
 
-### Call structure
+### Structure de l'URL
 
-    https://api.canlii.org/v1/legislationBrowse/{en}/{databaseId}/?api_key={key}
+    https://api.canlii.org/v1/legislationBrowse/{langue}/{databaseId}/?api_key={clef}
 
 ### Parameter
 
 | Parameter | Description |
 |--|--|
-| databaseId |   The code for the database for which you want a list. Generally, this will be the provincial two-letter code, followed by either "s" (for statutes), "r" (for regulations), or "a" (for annual statutes, when available). These can be obtained with the previous API call.
+| databaseId | Le code de la base de donnée pour laquelle vous souhaitez obtenir une liste. Généralement, ceci correspond au code à deux lettres de la province ou du territoire en question, suivi de "s" pour les lois (tiré du "s" dans le mot anglais "statute"), de "r" pour la règlementation, ou de "a" pour les lois annuelles (lorsque disponibles). Ces codes peuvent être obtenus en utilisant le type d'appel précédant.
+
+### Exemple d'appel
+
+    https://api.canlii.org/v1/legislationBrowse/fr/ons/?api_key={clef}
+
+## Obtenir les métadonnées d'une loi ou d'un règlement précis
+
+### Structure de l'URL
+
+    https://api.canlii.org/v1/{legislationBrowse}/{langue}/{databaseId}/{legislationId}/?api_key={clef}
 
 
-### Example call
+### Paramètres
 
-    https://api.canlii.org/v1/legislationBrowse/en/ons/?api_key={key}
-
-## Getting metadata for a specific legislation or regulation
-
-### Call structure
-
-    https://api.canlii.org/v1/{legislationBrowse}/{en}/{ons}/{legislationId}/?api_key={key}
-
-
-### Parameters
-
-| Parameter | Description |
+| Paramètres | Description |
 |--|--|
-| databaseId |   See above. |
-| legislationId | Specific ID for the piece of legislation that is being queried. Obtained with the previous API call. |
-
-
+| databaseId | Voir ci-dessus. |
+| legislationId | Identifiant unique de la loi ou du règlement dont on souhaite obtenir les métadonnées. Cet identifiant peut être obtenu en utilisant le type d'appel précédant. |
 
 ### Example call
 
-    https://api.canlii.org/v1/legislationBrowse/en/ons/rso-1990-c-a1/?api_key={key}
+    https://api.canlii.org/v1/legislationBrowse/fr/ons/rso-1990-c-a1/?api_key={clef}
 
-This will return:
+L'API retournera:
 
     {
           "legislationId": "rso-1990-c-a1",
