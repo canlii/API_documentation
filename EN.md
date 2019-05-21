@@ -235,7 +235,7 @@ This will return the following list:
 
 ### Call structure
 
-    https://api.canlii.org/v1/{legislationBrowse}/{en}/{ons}/{legislationId}/?api_key={key}
+    https://api.canlii.org/v1/{legislationBrowse}/{language}/{ons}/{legislationId}/?api_key={key}
 
 
 ### Parameters
