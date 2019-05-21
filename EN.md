@@ -224,7 +224,7 @@ This will return the following list:
 
 | Parameter | Description |
 |--|--|
-| databaseId |   The code for the database for which you want a list. Generally, this will be the provincial two-letter code, followed by either "s" (for statutes), "r" (for regulations), or "a" (for annual statutes, when available). These can be obtained with the previous API call.
+| databaseId |   The code for the database for which you want a list. Generally, this will be the provincial or territorial two-letter code, followed by either "s" (for statutes), "r" (for regulations), or "a" (for annual statutes, when available). These can be obtained with the previous API call.
 
 
 ### Example call
