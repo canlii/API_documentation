@@ -155,13 +155,34 @@ This will return:
 
 ### Example call
     https://api.canlii.org/v1/caseCitator/en/onca/1999canlii1527/citedCases?api_key={key}
+    
+This will return:
+
+    {
+      "citedCases": [
+        {
+          "databaseId": "onca",
+          "caseId": {
+            "en": "1998canlii2237"
+          },
+          "title": "Alper Development Inc. v. Harrowston Corp.",
+          "citation": "1998 CanLII 2237 (ON CA)"
+        },
+        {
+          "databaseId": "onca",
+          "caseId": {
+            "en": "1983canlii1820"
+          },
+          "title": "Berger v. Willowdale A.M.C. et al.",
+          "citation": "1983 CanLII 1820 (ON CA)"
+        }
+        ... // other cases
 
 ## Fetching list of legislation and regulation databases
 
 ### Call structure
 
     https://api.canlii.org/v1/legislationBrowse/{language}/?api_key={key}
-
 
 ### Parameters
 See "Common parameters" above.
