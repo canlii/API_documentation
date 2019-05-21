@@ -22,27 +22,27 @@ Voir "Paramètres fréquemment utilisés" ci-dessus.
 
 ### Exemple d'appel
 
-    https://api.canlii.org/v1/caseBrowse/en/?api_key={clef}
+    https://api.canlii.org/v1/caseBrowse/fr/?api_key={clef}
 
 Cet appel retournera:
 
     {
       "caseDatabases": [
         {
-          "databaseId": "oncicb",
-          "jurisdiction": "on",
-          "name": "Criminal Injuries Compensation Board"
-        },
-        {
           "databaseId": "nlpc",
           "jurisdiction": "nl",
           "name": "Provincial Court of Newfoundland and Labrador"
         },
         {
-          "databaseId": "nbls",
-          "jurisdiction": "nb",
-          "name": "Law Society of New Brunswick"
+          "databaseId": "oncicb",
+          "jurisdiction": "on",
+          "name": "Commission d’indemnisation des victimes d’actes criminels"
         },
+        {
+          "databaseId": "capsdpt",
+          "jurisdiction": "ca",
+          "name": "Tribunal de la protection des fonctionnaires divulgateurs"
+        }
         ... // autres bases de données
 
 ## Obtenir une liste de décisions provenant d'une même base de donnée de jurisprudence
@@ -74,7 +74,7 @@ Notes:
 
 ### Exemple d'appel
 
-    https://api.canlii.org/v1/caseBrowse/en/onca/?offset=0&resultCount=3&publishedBefore=2015-01-01&api_key={clef}
+    https://api.canlii.org/v1/caseBrowse/fr/onca/?offset=0&resultCount=3&publishedBefore=2015-01-01&api_key={clef}
 
 L'API retournera:
 
@@ -120,41 +120,41 @@ L'API retournera:
 
 ### Exemple d'appel
 
-Pour obtenir les métadonnées de la décision Dunsmuir (
-To fetch metadata for the Dunsmuir case (*Dunsmuir* c. *Nouveau-Brunswick*, [2008] 1 RCS 190, 2008 CSC 9 (CanLII)), you would use:
+Pour obtenir les métadonnées de la décision Dunsmuir (*Dunsmuir* c. *Nouveau-Brunswick*, [2008] 1 RCS 190, 2008 CSC 9 (CanLII)), vous feriez:
 
-    https://api.canlii.org/v1/caseBrowse/en/csc-scc/2008scc9/?api_key={clef}
+    https://api.canlii.org/v1/caseBrowse/fr/csc-scc/2008scc9/?api_key={clef}
 
 L'API retournera ceci:
    
-{
-  "databaseId": "csc-scc",
-  "caseId": "2008scc9",
-  "url": "http://canlii.ca/t/1vxsn",
-  "title": "Dunsmuir c. Nouveau-Brunswick",
-  "citation": "[2008] 1 RCS 190, 2008 CSC 9 (CanLII)",
-  "language": "fr",
-  "docketNumber": "31459",
-  "decisionDate": "2008-03-07",
-  "keywords": "équité procédurale — raisonnabilité — arbitre — norme — contrôle judiciaire",
-  "concatenatedId": "2008csc-scc9"
-}
+    {
+      "databaseId": "csc-scc",
+      "caseId": "2008scc9",
+      "url": "http://canlii.ca/t/1vxsn",
+      "title": "Dunsmuir c. Nouveau-Brunswick",
+      "citation": "[2008] 1 RCS 190, 2008 CSC 9 (CanLII)",
+      "language": "fr",
+      "docketNumber": "31459",
+      "decisionDate": "2008-03-07",
+      "keywords": "équité procédurale — raisonnabilité — arbitre — norme — contrôle judiciaire",
+      "concatenatedId": "2008csc-scc9"
+    }
 
 ## Obtenir la liste des décisions qui citent une décision donnée ou qui sont citées dans une décision donnée (citateur)
 ### Structure de l'URL
 
-      https://api.canlii.org/v1/caseCitator/{langue}/{databaseId}/{caseId}/metadataType?api_key={clef}
+      https://api.canlii.org/v1/caseCitator/**{en}**/{databaseId}/{caseId}/metadataType?api_key={clef}
 
 ### Paramètres
 
 | Paramètre | Description |
 |--|--|
-| databaseId | Voir ci-dessus.
+| langue | **Pour ce type d'appel, seul "en" fonctionne**
+| databaseId | Voir ci-dessus.|
 | caseId | Voir ci-dessus.|
 | metadataType | citedCases **ou** citingCases **ou** citedLegislations|
 
 ### Exemple d'appel
-    https://api.canlii.org/v1/caseCitator/en/qccs/2008qccs2292/citedCases?api_key={clef}
+    https://api.canlii.org/v1/caseCitator/**en**/qccs/2008qccs2292/citedCases?api_key={clef}
 
 L'API retournera ceci:
 
@@ -191,7 +191,7 @@ voir "Paramètres fréquemment utilisés" ci-dessus.
 
 ### Exemple d'appel
 
-    https://api.canlii.org/v1/legislationBrowse/en/?api_key={clef}
+    https://api.canlii.org/v1/legislationBrowse/fr/?api_key={clef}
 
 L'API retournera la liste suivante:
 
