@@ -1,6 +1,8 @@
 # Documentation de l'API REST de CanLII
 
-L'API est un API en lecture seule, en style d'architecture REST. Tous les paramètres requis doivent être spécifiés dans les URLs qui sont utilisés pour faire les appels à l'API. L'API retourne l'information demandée dans des structures JSON.
+CanLII opère un API qui permet aux développeurs autorisés d'accéder programmatiquement aux métadonnées des documents figurant dans la collection de CanLII.
+
+L'API est en lecture seule et en style d'architecture REST. Tous les paramètres requis doivent être spécifiés dans les URLs qui sont utilisés pour faire les appels à l'API. L'API retourne l'information demandée en format JSON.
 
 Pour demander une clef d'API, prière de transmettre un message avec vos coordonnées à notre [formulaire de commentaires](https://www.canlii.org/fr/feedback/commentaires.html).
 
@@ -8,10 +10,10 @@ Pour demander une clef d'API, prière de transmettre un message avec vos coordon
 
 | Paramètre | Description |
 |--|--|
-| langue |  {en} or {fr}. Ce paramètre détermine la langue dans laquelle l'API présentera les résultats. Par exemple, lorsqu'on cherche à obtenir une liste de texte législatifs en utilisant l'API legislationBrowse, si on utilise "fr" comme paramètre, le nom français des lois sera présenté. À l'inverse, en utilisant "en", on obtient les titres anglais. Ce ne sont pas tous les textes de notre collection qui sont disponibles dans les deux langues, donc en l'absence d'une version dans la langue du paramètre choisi, l'API retournera les résultats dans la seule langue disponible.
+| langue |  {en} or {fr}. Ce paramètre détermine la langue dans laquelle l'API présentera les résultats. Par exemple, lorsqu'on cherche à obtenir une liste de texte législatifs en utilisant legislationBrowse (voir ci-dessous), si on utilise "fr" comme paramètre, le nom français des lois sera présenté. À l'inverse, en utilisant "en", on obtient les titres anglais. Ce ne sont pas tous les textes de notre collection qui sont disponibles dans les deux langues, donc en l'absence d'une version dans la langue du paramètre choisi, l'API retournera les résultats dans la seule langue disponible.
 | clef |  Votre clef d'API.
 
-## Obtenir une liste des cours et tribunaux dans la collection de CanLII et leur "databaseId" respectif.
+## Obtenir une liste des cours et tribunaux dans la collection de CanLII et leur "databaseId" respectif
 
 ### Structure de l'URL
     https://api.canlii.org/v1/caseBrowse/{langue}/?api_key={clef}
@@ -55,16 +57,16 @@ Cet appel retournera:
 | Paramètre | Description |
 |--|--|
 | databaseId |   Voir ci-dessus.
-| offset | Le nombre de résultats qu'on souhaite "sauter". Lorsqu'on utilise 0 pour ce paramètre par exemple, l'API présentera les plus récentes entrées dans cette base de donnée, sujet aux paramètre optionnels ci-dessous.
+| offset | Le nombre de résultats qu'on souhaite "sauter". Lorsqu'on utilise 0 pour ce paramètre par exemple, l'API présentera les plus récentes entrées dans cette base de donnée, sujet aux paramètres optionnels ci-dessous.
 | resultCount | Le nombre de résultats souhaités. Maximum de 10 000.
 
 ### Paramètres optionnels
 
-| Paramètres | Description |
+| Paramètre | Description |
 |--|--|
-| [&publishedBefore=date] **ou** [&publishedAfter=date] | La date à laquelle la décision a été diffusée pour la première fois sur CanLII. (Note: Il peut y avoir un certain délai et un "jeu" de 2 jours est recommandé.
-| [&modifiedBefore=date] **ou** [&modifiedAfter=date] | La date a laquelle le contenu a été modifié pour la dernière fois dans CanLII.
-| [&changedBefore=date] **ou** [&changedAfter=date] | La date où les métadonnées au sujet d'une décision ou son contenu ont été modifiés pour la dernière fois dans CanLII.
+| [&publishedBefore=date] **ou** [&publishedAfter=date] | La date à laquelle la décision a été diffusée pour la première fois sur CanLII. (Note: Il peut y avoir un certain délai et un "jeu" de 2 jours est recommandé.)
+| [&modifiedBefore=date] **ou** [&modifiedAfter=date] | La date à laquelle le contenu a été modifié pour la dernière fois dans CanLII.
+| [&changedBefore=date] **ou** [&changedAfter=date] | La date à laquelle les métadonnées au sujet d'une décision ou son contenu ont été modifiés pour la dernière fois dans CanLII.
 | [decisionDateBefore=date] **ou** [&decisionDateAfter=date] | La date de la décision.
 
 Notes:
@@ -107,16 +109,16 @@ L'API retournera:
       ]
     }
 
-## Obtenir les métadonnées pour une décision en particulier
+## Obtenir les métadonnées d'une décision en particulier
 ### Structure de l'URL
     https://api.canlii.org/v1/caseBrowse/{langue}/{databaseId}/{caseId}/?api_key={clef}
 
 ### Paramètres
 
-| Paramètres | Description |
+| Paramètre | Description |
 |--|--|
-| databaseId | Voir ci-dessous.
-| caseId | L'identifiant unique de la décision, tel que retourné par l'appel précédant. Correspond généralement à la citation CanLII de la décision.
+| databaseId | Voir ci-dessus.
+| caseId | L'identifiant unique de la décision, tel que retourné par l'appel précédent. Correspond généralement à la citation CanLII de la décision.
 
 ### Exemple d'appel
 
@@ -142,19 +144,19 @@ L'API retournera ceci:
 ## Obtenir la liste des décisions qui citent une décision donnée ou qui sont citées dans une décision donnée (citateur)
 ### Structure de l'URL
 
-      https://api.canlii.org/v1/caseCitator/**{en}**/{databaseId}/{caseId}/metadataType?api_key={clef}
+      https://api.canlii.org/v1/caseCitator/{en}/{databaseId}/{caseId}/metadataType?api_key={clef}
 
 ### Paramètres
 
 | Paramètre | Description |
 |--|--|
-| langue | **Pour ce type d'appel, seul "en" fonctionne**
+| langue | **Pour ce type d'appel, seul "en" fonctionne**.
 | databaseId | Voir ci-dessus.|
 | caseId | Voir ci-dessus.|
 | metadataType | citedCases **ou** citingCases **ou** citedLegislations|
 
 ### Exemple d'appel
-    https://api.canlii.org/v1/caseCitator/**en**/qccs/2008qccs2292/citedCases?api_key={clef}
+    https://api.canlii.org/v1/caseCitator/en/qccs/2008qccs2292/citedCases?api_key={clef}
 
 L'API retournera ceci:
 
@@ -178,7 +180,7 @@ L'API retournera ceci:
         }
         ... // autres décisions
 
-## Obtenir une liste des bases de données de législation et de réglementation
+## Obtenir une liste des bases de données de lois et règlements
 
 ### Structure de l'URL
 
@@ -186,8 +188,8 @@ L'API retournera ceci:
 
 
 ### Paramètres
-See "Common parameters" above.
-voir "Paramètres fréquemment utilisés" ci-dessus.
+
+Voir "Paramètres fréquemment utilisés" ci-dessus.
 
 ### Exemple d'appel
 
@@ -223,15 +225,35 @@ L'API retournera la liste suivante:
 
     https://api.canlii.org/v1/legislationBrowse/{langue}/{databaseId}/?api_key={clef}
 
-### Parameter
+### Paramètre
 
-| Parameter | Description |
+| Paramètre | Description |
 |--|--|
-| databaseId | Le code de la base de donnée pour laquelle vous souhaitez obtenir une liste. Généralement, ceci correspond au code à deux lettres de la province ou du territoire en question, suivi de "s" pour les lois (tiré du "s" dans le mot anglais "statute"), de "r" pour la règlementation, ou de "a" pour les lois annuelles (lorsque disponibles). Ces codes peuvent être obtenus en utilisant le type d'appel précédant.
+| databaseId | Le code de la base de donnée pour laquelle vous souhaitez obtenir une liste. Généralement, ceci correspond au code à deux lettres de la province ou du territoire en question, suivi de "s" pour les lois (tiré du "s" dans le mot anglais "statute"), de "r" pour la réglementation, ou de "a" pour les lois annuelles (lorsque disponibles). Ces codes peuvent être obtenus en utilisant le type d'appel précédent.
 
 ### Exemple d'appel
 
     https://api.canlii.org/v1/legislationBrowse/fr/ons/?api_key={clef}
+    
+L'API retournera:
+
+    {
+      "legislations": [
+        {
+          "databaseId": "ons",
+          "legislationId": "rso-1990-c-a1",
+          "title": "Abandoned Orchards Act",
+          "citation": "RSO 1990, c A.1",
+          "type": "STATUTE"
+        },
+        {
+          "databaseId": "ons",
+          "legislationId": "rso-1990-c-a2",
+          "title": "Absconding Debtors Act",
+          "citation": "RSO 1990, c A.2",
+          "type": "STATUTE"
+        }
+        ... // more statutes
 
 ## Obtenir les métadonnées d'une loi ou d'un règlement précis
 
@@ -242,12 +264,12 @@ L'API retournera la liste suivante:
 
 ### Paramètres
 
-| Paramètres | Description |
+| Paramètre | Description |
 |--|--|
 | databaseId | Voir ci-dessus. |
-| legislationId | Identifiant unique de la loi ou du règlement dont on souhaite obtenir les métadonnées. Cet identifiant peut être obtenu en utilisant le type d'appel précédant. |
+| legislationId | Identifiant unique de la loi ou du règlement dont on souhaite obtenir les métadonnées. Cet identifiant peut être obtenu en utilisant le type d'appel précédent. |
 
-### Example call
+### Exemple d'appel
 
     https://api.canlii.org/v1/legislationBrowse/fr/ons/rso-1990-c-a1/?api_key={clef}
 
