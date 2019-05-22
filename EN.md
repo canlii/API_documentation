@@ -143,12 +143,13 @@ This will return:
 ## Obtaining information about what a case cites and what cites it (citator)
 ### Call structure
 
-      https://api.canlii.org/v1/caseCitator/{language}/{databaseId}/{caseId}/metadataType?api_key={key}
+      https://api.canlii.org/v1/caseCitator/en/{databaseId}/{caseId}/metadataType?api_key={key}
 
 ### Parameters
 
 | Parameter | Description |
 |--|--|
+| language | **For this type of call, only "en" is supported.**
 | databaseId |   See above.
 | caseId | See above.|
 | metadataType | citedCases **or** citingCases **or** citedLegislations|
