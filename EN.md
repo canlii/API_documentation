@@ -10,7 +10,7 @@ To apply for an API key, please send a message with your contact information to 
 
 | Parameter | Description |
 |--|--|
-| language |  {en} or {fr}. This impacts the language of the output. When retrieving a list of legislative text using the legislationBrowse API, if using "en" as a parameter, the English name of statutes will be returned as output, and if using "fr", the French name will be returned. This functionality is restricted by what languages are available in the dataset.
+| language |  {en} or {fr}. This impacts the language of the output. When retrieving a list of legislative text using legislationBrowse (see below), if using "en" as a parameter, the English name of statutes will be returned as output, and if using "fr", the French name will be returned. This functionality is restricted by what languages are available in the dataset.
 | key |  Your API key.
 
 ## Getting  a list of courts and tribunals in the CanLII collection and their corresponding databaseId
@@ -237,6 +237,25 @@ This will return the following list:
 
     https://api.canlii.org/v1/{legislationBrowse}/{language}/{databaseId}/{legislationId}/?api_key={key}
 
+This will return:
+
+    {
+      "legislations": [
+        {
+          "databaseId": "ons",
+          "legislationId": "rso-1990-c-a1",
+          "title": "Abandoned Orchards Act",
+          "citation": "RSO 1990, c A.1",
+          "type": "STATUTE"
+        },
+        {
+          "databaseId": "ons",
+          "legislationId": "rso-1990-c-a2",
+          "title": "Absconding Debtors Act",
+          "citation": "RSO 1990, c A.2",
+          "type": "STATUTE"
+        }
+        ... // more statutes
 
 ### Parameters
 
