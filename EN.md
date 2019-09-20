@@ -292,3 +292,15 @@ This will return:
           ]
         }
 
+## Limitations
+
+Finally, note that as in the examples above, all calls to the API must be made using HTTPS connections. HTTP is no longer supported.
+
+In addition, transfers larger than 10MB are not supported. In the rare cases where such payloads need to be returned by the API, you will now receive the following error:
+
+    {
+        "contentLength": 36771905,
+        "error": "TOO_LONG",
+        "message": "This content is larger than 10MB. Payloads larger than 10MB are not supported by this API. Please download the file in chunks by using RFC-7233 Range request headers."
+    }
+
